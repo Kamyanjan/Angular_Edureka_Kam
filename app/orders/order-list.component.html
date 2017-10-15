@@ -1,0 +1,39 @@
+<div class="orderCont panel panel-primary">
+    
+        <div class="panel panel-heading">
+            {{orderHeadTxt}}
+        </div>
+        <div class="panel panel-body">
+            <div class="row orderTable">
+                <div class="table-responsive">
+                    <table class="table" *ngIf='orders'>
+                        <thead>
+                            <tr>
+                                <button class="btn btn-primary" (click)='toggleImages()'> 
+                                    {{showImage?'Hide image':'Show Image'}}
+                                </button>
+                                <th>S.No</th>
+                                <th>Product Name</th>
+                                <th>Date of Order</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                            </tr>
+                            
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let order of orders'>
+                                <td>
+                                    <img [src]='order.imageUrl' class="prodImag" [style.width.px]='imageWidth' *ngIf="showImage">
+                                </td>
+                                <td>{{order.orderId}}</td>
+                                <td>{{order.orderProductName}}</td>
+                                <td>{{order.dateOfOrder}}</td>
+                                <td>{{order.price}}</td>
+                                <td>{{order.orderStatus}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
