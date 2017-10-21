@@ -7,17 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var AppComponent = /** @class */ (function () {
-    function AppComponent() {
-        this.pageTitle = "Home Page";
+var OrderQualityPipe = /** @class */ (function () {
+    function OrderQualityPipe() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'pm-app',
-            template: "<div>\n     \n        <h1>{{pageTitle}}</h1>\n       <kam-order></kam-order>\n       <pm-product></pm-product>\n    </div>"
+    OrderQualityPipe.prototype.transform = function (value, review) {
+        var quality = review > 4 ? "Excellent" : "Good";
+        return quality;
+    };
+    OrderQualityPipe = __decorate([
+        core_1.Pipe({
+            name: 'pipeForReviewTheProduct'
         })
-    ], AppComponent);
-    return AppComponent;
+    ], OrderQualityPipe);
+    return OrderQualityPipe;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.OrderQualityPipe = OrderQualityPipe;
+//# sourceMappingURL=order-quality.pipe.js.map

@@ -4,3 +4,40 @@
 th {
     color: #cd0000;
 }
+.filterSec {
+    overflow: hidden;
+    padding-bottom: 10px; 
+}
+.dispNone {
+    display: none;
+}
+.listHead, .listChild {
+    padding-top: 30px;
+}
+.listSection {
+    
+}
+.sNo {
+    background-color: rgb(182, 206, 182);
+}
+.pName {
+    background-color: rgb(226, 226, 156);
+}
+.orderCd {
+    background-color: rgb(223, 148, 148);
+}
+.dooCol {
+    background-color: rgb(116, 206, 233);
+}
+.priceCol {
+    background-color: rgb(179, 117, 117);
+}
+.statusCol {
+    background-color: rgb(77, 94, 77);
+}
+.reviewCol {
+    background-color: rgb(131, 131, 90);
+}
+.qualityCol {
+    background-color: rgb(155, 155, 196);
+}

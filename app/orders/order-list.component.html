@@ -4,8 +4,21 @@
             {{orderHeadTxt}}
         </div>
         <div class="panel panel-body">
+            <div class="filterSec row">
+                <div class="col-md-1">
+                    Filter By:
+                </div>
+                <div class="col-md-4">
+                    <input type="text" [(ngModel)]="filterTxt" />
+                </div>
+                <div class="col-md-5" ><h3>Filtered by : {{filterTxt}}</h3></div>
+                <div>
+                    <div class="col-md-1"><button type="button" class="btn btn-lg btn-success" (click)='toggleTable("grid")' >Grid</button></div>
+                    <div class="col-md-1"><button type="button" class="btn btn-lg btn-success" (click)='toggleTable("list")' >List</button></div>
+                </div>
+            </div>
             <div class="row orderTable">
-                <div class="table-responsive">
+                <div class="table-responsive" *ngIf = "isGridDisplay">
                     <table class="table" *ngIf='orders'>
                         <thead>
                             <tr>
@@ -14,26 +27,56 @@
                                 </button>
                                 <th>S.No</th>
                                 <th>Product Name</th>
+                                <th>Order Code</th>
                                 <th>Date of Order</th>
                                 <th>Price</th>
                                 <th>Status</th>
+                                <th>Review</th>
+                                <th>Quality</th>
                             </tr>
                             
                         </thead>
                         <tbody>
-                            <tr *ngFor='let order of orders'>
+                            <tr *ngFor='let order of orders | pipeForFilter:filterTxt'>
                                 <td>
                                     <img [src]='order.imageUrl' class="prodImag" [style.width.px]='imageWidth' *ngIf="showImage">
                                 </td>
                                 <td>{{order.orderId}}</td>
-                                <td>{{order.orderProductName}}</td>
+                                <td>{{order.orderProductName | uppercase}}</td>
+                                <td>{{order.orderCd}}</td>
                                 <td>{{order.dateOfOrder}}</td>
-                                <td>{{order.price}}</td>
+                                <td>{{order.price | currency:'USD':true}}</td>
                                 <td>{{order.orderStatus}}</td>
+                                <td>{{order.review}}</td>
+                                <td>{{order.review | pipeForReviewTheProduct:order.review}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <div class="listSection col-md-3" *ngIf = "isListDisplay" >
+                    <div class="listHead">
+                        <div class="well-sm sNo">S.No</div>
+                        <div class="well-sm pName">Product Name</div>
+                        <div class="well-sm orderCd">Order Code</div>
+                        <div class="well-sm dooCol">Date of Order</div>
+                        <div class="well-sm priceCol">Price</div>
+                        <div class="well-sm statusCol">Status</div>
+                        <div class="well-sm reviewCol">Review</div>
+                        <div class="well-sm qualityCol">Quality</div>
+                    </div>
+                    <div class="listChild" *ngFor='let order of orders | pipeForFilter:filterTxt '>
+                            <div class="well-sm sNo">{{order.orderId}}</div>
+                            <div class="well-sm pName">{{order.orderProductName}}</div>
+                            <div class="well-sm orderCd">{{order.orderCd}}</div>
+                            <div class="well-sm dooCol">{{order.dateOfOrder}}</div>
+                            <div class="well-sm priceCol">{{order.price}}</div>
+                            <div class="well-sm statusCol">{{order.orderStatus}}</div>
+                            <div class="well-sm reviewCol">{{order.review}}</div>
+                            <div class="well-sm qualityCol">{{order.review | pipeForReviewTheProduct:order.review}}</div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

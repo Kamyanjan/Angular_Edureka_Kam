@@ -5,8 +5,8 @@ import {Component} from '@angular/core';
     template:`<div>
      
         <h1>{{pageTitle}}</h1>
-        <pm-product></pm-product>
        <kam-order></kam-order>
+       <pm-product></pm-product>
     </div>`
 })
 
